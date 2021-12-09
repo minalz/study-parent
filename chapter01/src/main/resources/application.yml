@@ -1,0 +1,17 @@
+server:
+  port: 9090
+
+#spring:
+#  datasource:
+#    driver-class-name: com.mysql.jdbc.Driver
+#    url: jdbc:mysql://www.minalz.cn:10006/study-demo
+#    username: root
+#    password: 123456
+
+---
+spring:
+  redis:
+    database: 0
+    host: localhost         # Redis服务器地址
+    port: 6379              # Redis服务器连接端口
+    password:               # Redis服务器连接密码（默认为空）
