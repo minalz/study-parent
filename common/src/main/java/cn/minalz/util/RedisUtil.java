@@ -1,7 +1,10 @@
 package cn.minalz.util;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.DataType;
+import org.springframework.data.redis.connection.RedisConnection;
+import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
@@ -659,6 +662,44 @@ public class RedisUtil {
         }
 
     }
+
+    /**
+     * BitMap 设置标记
+     * @param key 键
+     * @param offset 偏移量
+     * @param tag 标记
+     * @return
+     */
+    public Boolean setBit(String key, long offset, boolean tag) {
+        return redisTemplate.opsForValue().setBit(key, offset, tag);
+    }
+
+    /**
+     * 判断BitMap上是否存在这个key对应的偏移量
+     * @param key 键
+     * @param offset 偏移量
+     * @return
+     */
+    public Boolean bitContains(String key, long offset) {
+        return redisTemplate.opsForValue().getBit(key, offset);
+    }
+
+    /**
+     * BitMap计数
+     * @param key 键
+     * @return
+     */
+    public long bitCount(String key) {
+        return redisTemplate.execute(new RedisCallback<Long>() {
+
+            @Override
+            public Long doInRedis(RedisConnection redisConnection) throws DataAccessException {
+                return redisConnection.bitCount(key.getBytes());
+            }
+        });
+    }
+
+
 
 }
 
