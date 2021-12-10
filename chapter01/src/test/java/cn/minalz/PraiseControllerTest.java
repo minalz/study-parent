@@ -1,13 +1,34 @@
 package cn.minalz;
 
+import cn.minalz.util.RedisUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
+@Slf4j
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = CoreApplication.class)
 public class PraiseControllerTest {
+
+    @Autowired
+    RedisUtil redisUtil;
 
     @Test
     public void test01() {
         int n = 100;
         create(n);
+    }
+
+    @Test
+    public void test02() {
+        redisUtil.setBit("test", 1, true);
+        System.out.println(redisUtil.bitCount("test"));
+        System.out.println("-------------------");
+        redisUtil.setBit("test", 3, true);
+        System.out.println(redisUtil.bitCount("test"));
     }
 
     /**
