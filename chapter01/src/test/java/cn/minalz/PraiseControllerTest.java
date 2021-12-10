@@ -1,30 +1,13 @@
 package cn.minalz;
 
-import cn.hutool.bloomfilter.bitMap.BitMap;
 import org.junit.Test;
 
 public class PraiseControllerTest {
 
     @Test
     public void test01() {
-        BitMap bitMap = new BitMap() {
-            @Override
-            public void add(long l) {
-                System.out.println("执行了add");
-            }
-
-            @Override
-            public boolean contains(long l) {
-                return false;
-            }
-
-            @Override
-            public void remove(long l) {
-                System.out.println("执行了remove");
-            }
-        };
-//        int n = 100;
-//        create(n);
+        int n = 100;
+        create(n);
     }
 
     /**
