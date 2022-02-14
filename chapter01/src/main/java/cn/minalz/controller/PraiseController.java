@@ -18,7 +18,7 @@ public class PraiseController {
 
     @RequestMapping("/test")
     public String praiseTest() {
-        redisUtil.set("test", 1);
+//        redisUtil.set("test", 1);
         return "praise-test";
     }
 }
