@@ -15,6 +15,9 @@ import io.netty.handler.codec.http.websocketx.extensions.compression.WebSocketSe
 
 public class Server {
 
+    /**
+     * 测试网站 http://www.easyswoole.com/wstool.html
+     */
     public static void main(String[] args) throws InterruptedException {
         // 用来接收客户端传进来的连接
         NioEventLoopGroup bossGroup = new NioEventLoopGroup();
